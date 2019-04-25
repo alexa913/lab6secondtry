@@ -1,7 +1,228 @@
 <!DOCTYPE html>
-<script scr="https://cdn.socket.io/socket.io-1.4.5.js">
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title class="head">Idle Juggler</title>
+    <style>
+        body{
+            background-image: url("https://i.pinimg.com/originals/d8/c3/cd/d8c3cd9ec46860d867d0388df27cc6b6.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .button{
+            background-color: indianred;
+            border: none;
+            color: black;
+            padding: 5px 8px;
+            text-align: center;
+            text-decoration: dimgray;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+
+        }
+        .button2{
+            background:url(http://3.bp.blogspot.com/-H6bnz4xETsg/Uwuxnk9ygNI/AAAAAAAAAX4/XdESWOjo1hk/s1600/juggling.gif) repeat;
+            width: 200px;
+            height: 150px;
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+        .p{
+            background:url("http://clipart-library.com/image_gallery2/Juggling-Free-Download-PNG.png") repeat;
+            width: 140px;
+            height: 214px;
+            background-size: 100% 100%;
+            background-position: center center;
+            border: none;
+
+        }
+        .p2{
+            background:url("https://thumbs.gfycat.com/ThriftyFragrantHedgehog-max-1mb.gif") repeat;
+            width: 144px;
+            height: 228px;
+            background-size: 100% 100%;
+            background-position: center center;
+            border: none;
+
+        }
+        .p3{
+            background:url("https://www.pngkey.com/png/full/401-4015417_clown-clipart-able-juggler-clipart.png") repeat;
+            width: 172px;
+            height: 200px;
+            background-size: 100% 100%;
+            background-position: center center;
+            border: none;
+
+        }
+        .p4{
+            background: url("https://cdn.discordapp.com/attachments/532729346583166977/570824869072207892/unknown.png") repeat;
+            width: 100px;
+            height: 200px;
+            background-size: 100% 100%;
+            background-position: center center;
+            border: none;
+
+        }
+        .p5{
+            background:url("https://dumielauxepices.net/sites/default/files/juggling-clipart-circus-performer-654432-7273542.png") repeat;
+            width: 176px;
+            height: 256px;
+            background-size: 100% 100%;
+            background-position: center center;
+            border: none;
+
+        }
+        .head{
+            text-align: center;
+            font-size: 24px;
+            color: darkred;
+
+        }
+        .h1{
+            text-align: center;
+            font-size: 64px;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<h1 class="h1">Idle Juggler</h1>
+<p class="head">Out of a job you decided to use the one skill you have to earn money: Juggling</p>
+<p class="head" id="points">0 Coins</p>
+<button class="button button2" onclick="clicker()">Juggle In The Streets</button>
+<button class="button" onclick="clickUp()" id="clickUpCC">Double Juggling Earnings 20 Coins. Currently: 1 per click</button>
+<p>
+    <img class="p"></img>
+    <button class="button" onclick="StreetJ()" id="StreetJCC">Hire 1 Street Juggler: 10 Coins</button>
+</p>
+<p>
+    <img class="p2"></img>
+    <button class="button" onclick="BirthdayJ()" id="BirthdayJCC">Hire 1 Birthday Party Juggler: 100 Coins</button>
+</p>
+<p>
+    <img class="p3"></img>
+    <button class="button" onclick="CircusJ()" id="CircusJCC">Hire 1 Circus Juggler: 500 Coins</button>
+</p>
+<p>
+    <img class="p4"></img>
+    <button class="button" onclick="SkaterJ()" id="SkaterJCC">Hire 1 Roller Skating Juggler: 1000 Coins</button>
+</p>
+<p>
+    <img class="p5"></img>
+    <button class="button" onclick="FireJ()" id="FireJCC">Hire 1 Fire Juggler: 5000 Coins</button>
+</p>
+
+<script>
+    var count=0;
+    var click=1;
+    var sjAdd=1;
+    var bjAdd=10;
+    var cjAdd=50;
+    var rjAdd=100;
+    var fjAdd=500;
+    var SJC=10;
+    var CUC=20;
+    var BJC=100;
+    var CJC=500;
+    var RJC=1000;
+    var FJC=5000;
+    var start=false;
+    function StreetJ(){
+        if(count>=SJC){
+            count=count-SJC;
+            setInterval(calcStreetJuggle, 1000);
+            SJC=Math.pow(SJC,1.1);
+            SJC=Math.round(SJC);
+            document.getElementById("StreetJCC").innerHTML=("Hire 1 Street Juggler: "+ SJC + " Coins");
+        }
+
+
+    }
+    function clicker(){
+        if(start==false){
+            setInterval(coins, 100);
+            start=true;
+        }
+        count= count+click;
+
+
+    }
+    function calcStreetJuggle(){
+        count=count+sjAdd;
+
+    }
+    function coins(){
+        document.getElementById("points").innerHTML=(count+" Coins");
+    }
+    function clickUp(){
+        if(count>=CUC){
+            click=click*2;
+            count=count-CUC
+            CUC=Math.pow(CUC,1.25);
+            CUC=Math.round(CUC);
+            document.getElementById("clickUpCC").innerHTML=("Double Juggling Earnings "+ CUC + " Coins. Currently: "+ click + " per click");
+        }
+
+    }
+    function BirthdayJ(){
+        if(count>=BJC){
+            count=count-BJC;
+            setInterval(calcBirthdayJuggle, 1000);
+            BJC=Math.pow(BJC,1.1);
+            BJC=Math.round(BJC);
+            document.getElementById("BirthdayJCC").innerHTML=("Hire 1 Birthday Party Juggler: "+ BJC);
+        }
+
+    }
+    function calcBirthdayJuggle(){
+        count=count+bjAdd;
+
+    }
+    function CircusJ(){
+        if(count>=CJC){
+            count=count-CJC;
+            setInterval(calcCircusJuggle, 1000);
+            CJC=Math.pow(CJC,1.1);
+            CJC=Math.round(CJC);
+            document.getElementById("CircusJCC").innerHTML=("Hire 1 Circus Party Juggler: "+ CJC);
+        }
+
+    }
+    function calcCircusJuggle(){
+        count=count+cjAdd;
+
+    }
+    function SkaterJ(){
+        if(count>=RJC){
+            count=count-RJC;
+            setInterval(calcSkaterJuggle, 1000);
+            RJC=Math.pow(RJC,1.1);
+            RJC=Math.round(RJC);
+            document.getElementById("SkaterJCC").innerHTML=("Hire 1 Roller Skating Juggler: "+ RJC);
+        }
+
+    }
+    function calcSkaterJuggle(){
+        count=count+rjAdd;
+
+    }
+    function FireJ(){
+        if(count>=FJC){
+            count=count-FJC;
+            setInterval(calcFireJuggle, 1000);
+            FJC=Math.pow(FJC,1.1);
+            FJC=Math.round(FJC);
+            document.getElementById("FireJCC").innerHTML=("Hire 1 Fire Juggler: "+ FJC);
+        }
+
+    }
+    function calcFireJuggle(){
+        count=count+fjAdd;
+
+    }
 
 </script>
-<script>
-    var socket = io();
-</script>
+</body>
+</html>
